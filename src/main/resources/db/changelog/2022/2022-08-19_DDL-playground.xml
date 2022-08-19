@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2022-08-19" author="juanjo" runOnChange="false">
+        <comment>First table</comment>
+        <sql>
+            CREATE TABLE record (
+                id INTEGER NOT NULL PRIMARY KEY,
+                description VARCHAR,
+                transaction_date TIMESTAMP WITH TIME ZONE NOT NULL,
+                created_at TIMESTAMP WITH TIME ZONE NOT NULL,
+                updated_at TIMESTAMP WITH TIME ZONE NOT NULL,
+                version INTEGER NOT NULL
+            );
+        </sql>
+        <rollback>
+            <sql>
+                DROP TABLE IF EXISTS record;
+            </sql>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
