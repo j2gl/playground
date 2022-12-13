@@ -18,13 +18,21 @@ public class PropertyService {
     @Value("${" + PROPERTY_NAME +":}")
     private List<String> stringList;
 
-    @Scheduled(fixedRate = 5000)
-    public void showData() {
+    @Scheduled(fixedRate = 600_000)
+    public void showDataOnLog() {
         log.info("""
             Showing values from "{}" property stored as List and a Set:
             \tString Set  = {}, class={}
             \tString List = {}, class={}""",
                 PROPERTY_NAME, stringSet, stringSet.getClass(), stringList, stringList.getClass());
+    }
+
+    public Set<String> getPropertyAsSet() {
+        return stringSet;
+    }
+
+    public List<String> getPropertyAsList() {
+        return stringList;
     }
 
 }
