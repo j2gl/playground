@@ -17,8 +17,8 @@
 		<java.version>17</java.version>
 		<testcontainers.version>1.17.3</testcontainers.version>
 		<moneta.version>1.4.2</moneta.version>
-		<springcloud.version>2021.0.5</springcloud.version>
-		<wiremock.version>2.27.2</wiremock.version>
+		<spring-cloud.version>2022.0.0</spring-cloud.version>
+		<wiremock.version>2.35.0</wiremock.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -38,8 +38,12 @@
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-sleuth</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.javamoney</groupId>
@@ -75,7 +79,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.github.tomakehurst</groupId>
-			<artifactId>wiremock</artifactId>
+			<artifactId>wiremock-jre8-standalone</artifactId>
 			<version>${wiremock.version}</version>
 			<scope>test</scope>
 		</dependency>
@@ -105,7 +109,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${springcloud.version}</version>
+				<version>${spring-cloud.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -117,6 +121,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${project.parent.version}</version>
 				<configuration>
 					<excludes>
 						<exclude>

@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
-import static com.github.tomakehurst.wiremock.client.WireMock.matching;
 import static com.github.tomakehurst.wiremock.client.WireMock.okJson;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,7 +25,7 @@ class GreetingWebClientIT extends WireMockBase {
         // given
         String name = "MrSnow";
         wireMockServer.stubFor(get(urlPathEqualTo("/api/greeting"))
-                        .withQueryParam("name", matching(name))
+                        .withQueryParam("name", equalTo(name))
                         .willReturn(okJson(jsonResponse(name))));
 
         // when
