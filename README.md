@@ -31,7 +31,7 @@ Code sample to upload a file. [UploadController](src/main/java/org/juanjo/playgr
 
 To test upload controller:
 ```shell
-curl --location --request POST "localhost:8080/api/greeting" \
+curl --location --request POST "localhost:8080/api/document" \
 --form "param1=\"1234\"" \
 --form "param2=\"5678\"" \
 --form "file=@\"/tmp/document.pdf\""
