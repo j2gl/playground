@@ -18,6 +18,7 @@
 		<testcontainers.version>1.17.3</testcontainers.version>
 		<moneta.version>1.4.2</moneta.version>
 		<springcloud.version>2021.0.5</springcloud.version>
+		<wiremock.version>2.27.2</wiremock.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -71,6 +72,19 @@
 			<groupId>org.testcontainers</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.tomakehurst</groupId>
+			<artifactId>wiremock</artifactId>
+			<version>${wiremock.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- To avoid error: Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider ... -->
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-resolver-dns-native-macos</artifactId>
+			<classifier>osx-aarch_64</classifier>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>
