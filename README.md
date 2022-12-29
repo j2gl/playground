@@ -36,3 +36,7 @@ curl --location --request POST "localhost:8080/api/document" \
 --form "param2=\"5678\"" \
 --form "file=@\"/tmp/document.pdf\""
 ```
+
+## Actuator
+Go to [actuator](http://localhost:8080/actuator) to check it.
+Also if you hit `curl --location --request GET "localhost:8080/api/greeting?name=Snow"` then you can go to [here](http://localhost:8080/actuator/metrics/http.server.requests).
