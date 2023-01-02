@@ -18,6 +18,10 @@
 		<testcontainers.version>1.17.3</testcontainers.version>
 		<moneta.version>1.4.2</moneta.version>
 		<wiremock.version>2.35.0</wiremock.version>
+
+		<!-- SonaQube Properties -->
+		<sonar.organization>j2gl</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
 		<dependency>
