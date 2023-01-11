@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.Test;
 
+import javax.money.CurrencyUnit;
+import javax.money.Monetary;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -42,5 +44,30 @@ class MoneyTest {
         log.info("money = {}", money);
         log.info("expected = {}", expected);
         assertThat(money).isEqualTo(expected);
+    }
+
+    @Test
+    void givenAmountInJPY_whenSetMoney_thenReturnValueWithoutCents() {
+        CurrencyUnit currency = Monetary.getCurrency("JPY");
+
+        Money money = Money.ofMinor(currency, 125_321L);
+
+        BigDecimal value = money.getNumberStripped();
+        assertThat(value).isEqualTo(BigDecimal.valueOf(125_321L));
+        assertThat(money)
+                .isEqualTo(Money.of(125_321L, "JPY"))
+                .hasToString("JPY 125321.00");
+    }
+
+    @Test
+    void givenAmountInEUR_whenSetMoney_thenReturnValueWithCorrectFraction() {
+        CurrencyUnit currency = Monetary.getCurrency("EUR");
+
+        Money money = Money.ofMinor(currency, 125_321L);
+
+        BigDecimal value = money.getNumberStripped();
+        assertThat(value).isEqualTo(BigDecimal.valueOf(1253.21));
+        assertThat(money).isEqualTo(Money.of(1253.21, "EUR"))
+                .hasToString("EUR 1253.21");
     }
 }
