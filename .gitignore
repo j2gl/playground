@@ -30,3 +30,6 @@ target/
 
 ### Logs
 /logs
+
+### Postgres Binary Data
+.devcontainer/postgres/data
