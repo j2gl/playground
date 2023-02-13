@@ -22,6 +22,7 @@ public class GreetingController {
     public ResponseEntity<GreetingResponse> greet(@RequestParam String name) {
         String greeting = "Hello %s!".formatted(name);
 
+        log.debug("Called /greeting; name={}", name);
         return ResponseEntity
                 .ok(GreetingResponse.builder()
                         .message(greeting)
@@ -31,7 +32,7 @@ public class GreetingController {
     @GetMapping("/test-greeting")
     public ResponseEntity<GreetingResponse> callGreetWithWebClient() {
         var response = greetingWebClient.callGreeting("Webclient");
-        log.debug("Called /test-greeting, response={}", response);
+        log.debug("Called /test-greeting; response={}", response);
         return ResponseEntity.ok(response);
     }
 
