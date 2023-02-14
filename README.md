@@ -40,3 +40,18 @@ curl --location --request POST "localhost:8080/api/document" \
 ## Actuator
 Go to [actuator](http://localhost:8080/actuator) to check it.
 Also if you hit `curl --location --request GET "localhost:8080/api/greeting?name=Snow"` then you can go to [here](http://localhost:8080/actuator/metrics/http.server.requests).
+
+### Tracing
+
+1) Run Zipkin in a docker container
+```shell
+docker run -d -p 9411:9411 openzipkin/zipkin
+```
+
+2) Do some requests like:
+```shell
+curl --location --request GET "localhost:8080/api/test-greeting"
+```
+
+3) Go to Zipkin UI: http://localhost:9411 
+4) Search `serviceName: playground` and press `RUN QUERY`  
