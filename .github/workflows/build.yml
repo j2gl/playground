@@ -3,9 +3,9 @@ on:
   push:
     branches:
       - 'master'
-      - 'feature/**'
   pull_request:
     types: [ opened, synchronize, reopened ]
+
 jobs:
   # Label of the container job
   build-job:
@@ -39,9 +39,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-#      - uses: pmd/pmd-github-action@v1
-#        with:
-#          rulesets: 'pmd/pmd-custom-ruleset.xml'
 
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
