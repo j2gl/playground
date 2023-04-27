@@ -22,7 +22,7 @@ class CurrenciesTest {
         Locale[] locales = Locale.getAvailableLocales();
         Arrays.stream(locales).toList()
                 .stream()
-                .filter(s -> s != null  && !s.toString().isBlank())
+                .filter(s -> s != null && !s.toString().isBlank())
                 .forEach(locale -> {
                             try {
                                 Currency currency = Currency.getInstance(locale);
@@ -37,23 +37,28 @@ class CurrenciesTest {
     @Test
     void showCurrenciesWithoutFractionalDigits() {
         log.info("*** Show currencies without fraction digits ***");
-        currencies.stream()
+        var currenciesWithoutFractionalDigits = currencies.stream()
                 .filter(c -> c.getDefaultFractionDigits() <= 0)
-                .sorted(Comparator.comparing(Currency::getCurrencyCode) )
-                .forEach(c -> log.info("currencyCode={}, numericCode={}, displayName={}", c,
-                        String.format("%03d",c.getNumericCode()),
-                        c.getDisplayName()));
+                .sorted(Comparator.comparing(Currency::getCurrencyCode))
+                .toList();
+        currenciesWithoutFractionalDigits.forEach(c -> log.info("currencyCode={}, numericCode={}, displayName={}", c,
+                String.format("%03d", c.getNumericCode()),
+                c.getDisplayName()));
+        log.info("Total currencies without fractional digits: {}", currenciesWithoutFractionalDigits.size());
     }
 
     @Test
     void showAllCurrencies() {
         log.info("*** Show all currencies ***");
-        currencies.stream()
-                .sorted(Comparator.comparing(Currency::getCurrencyCode) )
-                .forEach(
+        var allCurrencies = currencies.stream()
+                .sorted(Comparator.comparing(Currency::getCurrencyCode))
+                .toList();
+        allCurrencies.forEach(
                 c -> log.info("currencyCode={}, numericCode={}, symbol={}, displayName={}", c,
-                        String.format("%03d",c.getNumericCode()),
-                        String.format("%-3s",c.getSymbol()),
+                        String.format("%03d", c.getNumericCode()),
+                        String.format("%-3s", c.getSymbol()),
                         c.getDisplayName()));
+        log.info("Total currencies: {}", allCurrencies.size());
+
     }
 }
