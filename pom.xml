@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.2</version>
+		<version>3.0.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.juanjo</groupId>
@@ -22,6 +22,8 @@
 		<!-- SonaQube Properties -->
 		<sonar.organization>j2gl</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
+		<pmd-plugin.version>3.20.0</pmd-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -147,6 +149,32 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>${pmd-plugin.version}</version>
+				<configuration>
+					<includeTests>true</includeTests>
+					<printFailingErrors>true</printFailingErrors>
+					<failOnViolation>false</failOnViolation>
+					<skipEmptyReport>false</skipEmptyReport>
+					<rulesets>
+						<ruleset>${basedir}/src/test/resources/pmd/pmd-custom-ruleset.xml</ruleset>
+					</rulesets>
+				</configuration>
+				<executions>
+					<execution>
+						<id>run-pmd</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>check</goal>
+							<goal>cpd-check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 
