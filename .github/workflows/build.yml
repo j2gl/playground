@@ -59,7 +59,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=j2gl-playground -Dspring.profiles.active=build -Dsonar.coverage.jacoco.xmlReportPaths=${project.build.directory}/site/jacoco/jacoco.xml
+        run: mvn -B verify jacoco:report jacoco:report-integration jacoco:report-aggregate org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=j2gl-playground -Dspring.profiles.active=build
 
       - name: PMD GitHub Report
         uses: jwgmeligmeyling/pmd-github-action@v1.2
