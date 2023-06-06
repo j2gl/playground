@@ -19,12 +19,15 @@
 		<moneta.version>1.4.2</moneta.version>
 		<wiremock.version>2.35.0</wiremock.version>
 
+		<pmd-plugin.version>3.20.0</pmd-plugin.version>
+		<jacoco.version>0.8.10</jacoco.version>
+
 		<!-- SonaQube Properties -->
 		<sonar.organization>j2gl</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-
-		<pmd-plugin.version>3.20.0</pmd-plugin.version>
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -171,6 +174,31 @@
 							<goal>check</goal>
 							<goal>cpd-check</goal>
 						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<formats>
+								<format>XML</format>
+							</formats>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
