@@ -19,17 +19,15 @@
 		<moneta.version>1.4.2</moneta.version>
 		<wiremock.version>2.35.0</wiremock.version>
 
+		<pmd-plugin.version>3.20.0</pmd-plugin.version>
+		<jacoco.version>0.8.10</jacoco.version>
+
 		<!-- SonaQube Properties -->
 		<sonar.organization>j2gl</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-		<sonar.coverage.jacoco.xmlReportPaths>
-			${project.basedir}/target/site/jacoco/jacoco.xml
-		</sonar.coverage.jacoco.xmlReportPaths>
-
-		<pmd-plugin.version>3.20.0</pmd-plugin.version>
-		<jacoco.version>0.8.10</jacoco.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
