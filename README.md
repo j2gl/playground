@@ -10,7 +10,7 @@ Get properties from [application.properties](src/main/resources/application.prop
 ## Greeting Controller
 
 ### /api/greeting
-Code sample to test a Rest Endpoint with greeting. [PlaygroundRestController](src/main/java/org/juanjo/playground/controller/GreetingController.java)
+Code sample to test a Rest Endpoint with greeting. [GreetingController](src/main/java/org/juanjo/playground/controller/GreetingController.java)
 
 To use greeting endpoint
 ```shell
@@ -35,6 +35,21 @@ curl --location --request POST "localhost:8080/api/document" \
 --form "param1=\"1234\"" \
 --form "param2=\"5678\"" \
 --form "file=@\"/tmp/document.pdf\""
+```
+
+## Room Controller
+The objective of this controller is to test the use of filling maps with properties from a file.
+
+See
+* [application.properties](src/main/resources/application.properties).
+* [PropertyService](src/main/java/org/juanjo/playground/props/PropertyService.java)
+* [RoomController](src/main/java/org/juanjo/playground/controller/RoomController.java) 
+                    
+
+```shell
+curl --location --request GET "localhost:8080/api/rooms" | jq
+curl --location --request GET "localhost:8080/api/rooms/101" | jq
+curl --location --request GET "localhost:8080/api/rooms/202" | jq
 ```
 
 ## Actuator
