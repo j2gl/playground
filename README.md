@@ -22,6 +22,16 @@ To call greeting endpoint through webclient test.
 curl --location --request GET "localhost:8080/api/test-greeting"
 ```
 
+### Room Controller
+
+Shows hot to use maps in `application.properties` file. [RoomController](src/main/java/org/juanjo/playground/controller/RoomController.java).
+Check the properties file [application.properties](src/main/resources/application.properties).
+```shell
+curl --location --request GET "localhost:8080/api/rooms" | jq
+curl --location --request GET "localhost:8080/api/rooms/101" | jq
+curl --location --request GET "localhost:8080/api/rooms/202" | jq
+```
+
 ### Wiremock Example
 See also the Integration Test with wiremock example: [GreetingWebClientIT](src/test/java/org/juanjo/playground/client/GreetingWebClientIT.java). 
 
