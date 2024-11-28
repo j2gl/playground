@@ -6,6 +6,7 @@ import com.google.common.cache.LoadingCache;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -23,7 +24,7 @@ public class GoogleLoadingCachePlayground {
     public static final int CACHE_SIZE = 3;
     private final LoadingCache<Integer, Integer> loadingCache;
     private final Map<Integer, Integer> storage = new HashMap<>();
-    private final Random random = new Random();
+    private final Random random = new SecureRandom();
 
     public GoogleLoadingCachePlayground() {
         fillStorage();
@@ -43,7 +44,7 @@ public class GoogleLoadingCachePlayground {
         }
     }
 
-    private void printValuesFromCache() throws ExecutionException {
+    public void printValuesFromCache() throws ExecutionException {
         String values = "";
         for (int i = 0; i < CACHE_SIZE; i++) {
             values = values.concat(loadingCache.get(i) + ", ");
@@ -51,7 +52,7 @@ public class GoogleLoadingCachePlayground {
         log.info("Cache size = {}, value = {}storage={}", loadingCache.size(), values, storage);
     }
 
-    private void slowIntensiveOperation() {
+    public void doSlowIntensiveOperation() {
         try {
             Thread.sleep(500);
             fillStorage();
@@ -66,7 +67,7 @@ public class GoogleLoadingCachePlayground {
         try {
             CompletableFuture.runAsync(() -> {
                 for (int i = 0; i < 100; i++) {
-                    cacheTest.slowIntensiveOperation();
+                    cacheTest.doSlowIntensiveOperation();
                 }
             });
 
