@@ -14,7 +14,12 @@ public class UniqueIdGenerator {
     public static String generateRandomHexId(int length) {
         var token = new byte[length];
         secureRandom.nextBytes(token);
-        return new BigInteger(1, token).toString(16);
+        var hexNumber = new BigInteger(1, token).toString(16).toUpperCase();
+        var padding = length * 2 - hexNumber.length();
+        if (padding > 0) {
+            hexNumber = "0".repeat(padding) + hexNumber;
+        }
+        return "0x" + hexNumber;
     }
 
     public static String generateRandomBase64Id(int length) {
@@ -27,7 +32,7 @@ public class UniqueIdGenerator {
         final String characters = "1234567890ABCDEFGHIJLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         StringBuilder result = new StringBuilder();
 
-        while(length > 0) {
+        while (length > 0) {
             result.append(characters.charAt(secureRandom.nextInt(characters.length())));
             length--;
         }
