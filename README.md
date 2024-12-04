@@ -62,6 +62,13 @@ curl --location --request GET "localhost:8080/api/rooms/101" | jq
 curl --location --request GET "localhost:8080/api/rooms/202" | jq
 ```
 
+## GoogleLoadingCachePlaygroundTest
+It is just a small test for Google Loading Cache. 
+
+See: 
+* [GoogleLoadingCachePlayground](src/main/java/org/juanjo/playground/cache/GoogleLoadingCachePlayground.java)
+* [GoogleLoadingCachePlaygroundTest](src/test/java/org/juanjo/playground/cache/GoogleLoadingCachePlaygroundTest.java)
+
 ## Actuator
 Go to [actuator](http://localhost:8080/actuator) to check it.
 Also if you hit `curl --location --request GET "localhost:8080/api/greeting?name=Snow"` then you can go to [here](http://localhost:8080/actuator/metrics/http.server.requests).
