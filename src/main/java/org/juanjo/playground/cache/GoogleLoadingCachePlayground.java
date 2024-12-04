@@ -10,7 +10,6 @@ import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -56,25 +55,6 @@ public class GoogleLoadingCachePlayground {
         try {
             Thread.sleep(500);
             fillStorage();
-        } catch (InterruptedException e) {
-            log.error("Interrupted ", e);
-            Thread.currentThread().interrupt();
-        }
-    }
-
-    public static void main(String[] args) throws ExecutionException {
-        var cacheTest = new GoogleLoadingCachePlayground();
-        try {
-            CompletableFuture.runAsync(() -> {
-                for (int i = 0; i < 100; i++) {
-                    cacheTest.doSlowIntensiveOperation();
-                }
-            });
-
-            for (int i = 0; i < 100; i++) {
-                cacheTest.printValuesFromCache();
-                Thread.sleep(300);
-            }
         } catch (InterruptedException e) {
             log.error("Interrupted ", e);
             Thread.currentThread().interrupt();
