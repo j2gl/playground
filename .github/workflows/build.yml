@@ -62,6 +62,6 @@ jobs:
         run: mvn -B verify jacoco:report jacoco:report-integration jacoco:report-aggregate org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=j2gl-playground -Dspring.profiles.active=build
 
       - name: PMD GitHub Report
-        uses: jwgmeligmeyling/pmd-github-action@v1.2
+        uses: jwgmeligmeyling/pmd-github-action@322e346bd76a0757c4d54ff9209e245965aa066d
         with:
           path: '**/pmd.xml'
