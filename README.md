@@ -1,7 +1,29 @@
 # Playground
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=j2gl-playground&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=j2gl-playground)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=j2gl-playground&metric=coverage)](https://sonarcloud.io/summary/new_code?id=j2gl-playground)
+
 This is a Spring Boot application for testing and storing code snippets for future reference.
 
+## Building
+
+```sh
+mvn verify
+```
+
+Build with sonar check
+```sh
+mvn verify sonar:sonar \
+    -Dsonar.login=<SONAR_TOKEN_HERE> \
+    -Dsonar.organization=j2gl \
+    -Dsonar.projectKey=j2gl-playground
+```
+
+## Running
+
+```sh
+mvn spring-boot:run
+```
 ## Playground Controller
 
 Get properties from [application.properties](src/main/resources/application.properties) file as a `java.util.List` or 
